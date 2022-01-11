@@ -1,3 +1,5 @@
+import { ToastrService } from './common/toastr.service';
+import { EventService } from './events/shared/event.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,7 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [EventService,ToastrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
+type style={
+    color: string;
+    'font-weight': string;
+};
 
 @Component({
     selector: 'events-thumbnail',
@@ -8,7 +12,8 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
         <div class="well hoverwell thumbnail">
             <h2>{{event?.name}} </h2>
             <div>Date: {{event?.date}}</div>
-            <div [ngSwitch]="event?.time" >
+            <div [ngStyle]= "getStartTimeStyle()"
+                [ngSwitch]="event?.time" >
                 Time: {{event?.time}}
                 <span *ngSwitchCase="'8:00 am'"> | Early Start</span>
                 <span *ngSwitchCase="'10:00 am'"> | Late Start</span>
@@ -34,9 +39,13 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 export class EventThumbnailComponent {
     @Input() event: any;
 
+    getStartTimeStyle(): style {
+        if (this.event && this.event.time === '8:00 am' || this.event.time === '9:00 am')
+            return { color: '#003300', 'font-weight': 'bolder' };
+        return { color: 'red', "font-weight": '' }
+    }
 
     logFoo() {
         console.log('foo');
-
     }
 }
