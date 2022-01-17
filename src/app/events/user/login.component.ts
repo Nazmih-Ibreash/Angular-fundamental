@@ -18,12 +18,12 @@ export class LoginComponent{
     }
 
 
-    login(formValues:any):void {
-       
+    login(formValues: { userName: string; password: string; }):void {       
         this.authService.loginUser(formValues.userName, formValues.password)   
 
         this.router.navigate(['events'])
     }
+    
     cancel() {
         this.router.navigate(['login'])
     }
