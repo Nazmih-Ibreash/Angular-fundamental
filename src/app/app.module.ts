@@ -16,6 +16,7 @@ import { appRoutes } from './../routes';
 import { Error404Component } from './errors/404.component';
 import { EventResolver } from './events/events-resolver.service';
 import { AuthService } from './events/user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -32,6 +33,8 @@ import { AuthService } from './events/user/auth.service';
   imports: [
     BrowserModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
@@ -46,7 +49,7 @@ import { AuthService } from './events/user/auth.service';
 })
 export class AppModule { }
 
-export function checkDirtyState(component: CreateEventComponent ){
+export function checkDirtyState(component: CreateEventComponent) {
   if (component.isDirty) {
     return window.confirm('you have not saved this event, do you really want to cancel?')
   }

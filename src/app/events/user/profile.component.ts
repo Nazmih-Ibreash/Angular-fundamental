@@ -15,19 +15,19 @@ import { Router } from "@angular/router";
     `]
 })
 export class ProfileComponent implements OnInit {
-  profileForm!: FormGroup 
+  profileForm!: FormGroup
   private firstName!: FormControl;
   private lastName!: FormControl;
 
   constructor(private authService: AuthService, private router: Router) {
-    
+
   }
 
 
   ngOnInit(): void {
-    this.firstName = new FormControl(this.authService.currentUser.firstName,[Validators.required, Validators.pattern('[a-zA-Z]')]);
-    this.lastName = new FormControl(this.authService.currentUser.lastName,Validators.required)
-    this.profileForm= new FormGroup({
+    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z].*')]);
+    this.lastName = new FormControl(this.authService.currentUser.lastName, Validators.required)
+    this.profileForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName
     })
@@ -38,17 +38,20 @@ export class ProfileComponent implements OnInit {
       this.authService.updateCurrentUser(fromValues.firstName, fromValues.lastName)
     }
   }
+  /*
   validateFirstNameRequired():any {
     return this.firstName.invalid  && this.firstName.errors?.['required']
   }
   validateFirstNamePatten() {
     return this.firstName?.errors?.['pattern'];
   }
+  */
+  validateFistName(): boolean {
+    return this.firstName.valid || this.firstName.untouched
+  }
 
-
-  validateLastName():boolean {
+  validateLastName(): boolean {
     return this.lastName.valid || this.lastName.untouched
   }
 
 }
- 
