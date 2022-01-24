@@ -38,14 +38,7 @@ export class ProfileComponent implements OnInit {
       this.authService.updateCurrentUser(fromValues.firstName, fromValues.lastName)
     }
   }
-  /*
-  validateFirstNameRequired():any {
-    return this.firstName.invalid  && this.firstName.errors?.['required']
-  }
-  validateFirstNamePatten() {
-    return this.firstName?.errors?.['pattern'];
-  }
-  */
+
   validateFistName(): boolean {
     return this.firstName.valid || this.firstName.untouched
   }

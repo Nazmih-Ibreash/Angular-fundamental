@@ -13,14 +13,19 @@ export class EventService {
     return subject;
   }
 
-  getEvent(id: number): IEvent | undefined {
-    return EVENTS.find(event => event.id === id)
+  getEvent(id: number): IEvent | any {
+    return EVENTS?.find(event => event.id === id)
   }
 
   saveEvent(newEvent: IEvent) {
     newEvent.id = 88
     newEvent.sessions = []
     EVENTS.push(newEvent)
+  }
+
+  updateEvent(event: IEvent) {
+    let index = EVENTS.findIndex(x => x.id = event.id)
+    EVENTS[index] = event
   }
 }
 
