@@ -10,19 +10,22 @@ import { ActivatedRoute } from "@angular/router";
     .container{padding-left:20px;padding-right:20px}
     .event-image{height:100px;}
     a {cursor: pointer}
+    button {margin-right: 5px}
     `]
 })
 export class EventDetailsComponent {
-    event!: IEvent ;
+    event!: IEvent;
     addMode!: boolean
-    
-    constructor(private eventService:EventService, private route:ActivatedRoute) { }
-    
+    filterBy: string = 'all'
+    sortBy: string = 'votes'
+
+    constructor(private eventService: EventService, private route: ActivatedRoute) { }
+
     ngOnInit() {
         this.event = this.eventService.getEvent(+this.route.snapshot.params['id'])
     }
     addSession() {
-        this.addMode=true
+        this.addMode = true
     }
 
     saveNewSession(session: ISession): void {
@@ -31,7 +34,11 @@ export class EventDetailsComponent {
         this.event?.sessions.push(session)
         this.eventService.updateEvent(this.event)
         this.addMode = false
-        
+
+    }
+
+    cancelAddSession() {
+        this.addMode = false
     }
 }
 //
