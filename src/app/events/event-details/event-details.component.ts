@@ -1,8 +1,8 @@
-import { map } from 'rxjs';
+//import { map } from 'rxjs';
 import { IEvent, ISession } from './../shared/event.model';
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { EventService } from "../shared/event.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 
 @Component({
     templateUrl: './event-details.component.html',
@@ -13,7 +13,7 @@ import { ActivatedRoute } from "@angular/router";
     button {margin-right: 5px}
     `]
 })
-export class EventDetailsComponent {
+export class EventDetailsComponent implements OnInit{
     event!: IEvent;
     addMode!: boolean
     filterBy: string = 'all'
@@ -22,7 +22,10 @@ export class EventDetailsComponent {
     constructor(private eventService: EventService, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.event = this.eventService.getEvent(+this.route.snapshot.params['id'])
+        this.route.params.forEach((params:Params) => {
+            this.event=this.eventService.getEvent(+params['id'])
+            this.addMode=false
+        });
     }
     addSession() {
         this.addMode = true

@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { EventsListComponent } from './events/events.component';
 import { EventThumbnailComponent } from './events/events-thumbnail.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { appRoutes } from './../routes';
 import { Error404Component } from './errors/404.component';
@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { DurationPipe } from './events/shared/duration.pipe';
+import { UpvoteComponent } from "./events/event-details/upvote.component";
 //import * as $ from 'jquery'
 
 declare let toastr: Toastr;
@@ -38,13 +39,15 @@ let jQuery: any
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    UpvoteComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+
   ],
   imports: [
     BrowserModule,
-    NgbModule,
+    NgModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)

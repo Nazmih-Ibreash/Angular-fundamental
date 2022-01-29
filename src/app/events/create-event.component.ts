@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Form, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { EventService } from "./shared/event.service";
@@ -14,7 +14,7 @@ import { EventService } from "./shared/event.service";
     .error : ms-input-placeholder { color: #999;}
     `]
 })
-export class CreateEventComponent {
+export class CreateEventComponent implements OnInit{
     isDirty: boolean = true;
 
     newEvent!: any

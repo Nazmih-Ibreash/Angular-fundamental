@@ -16,7 +16,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
     .error : ms-input-placeholder { color: #999;}
     `]
 })
-export class CreateSessionComponent{
+export class CreateSessionComponent implements OnInit{
     @Output() saveNewSession = new EventEmitter()
     @Output() cancelAddSession = new EventEmitter()
 
