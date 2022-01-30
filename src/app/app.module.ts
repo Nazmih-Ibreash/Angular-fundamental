@@ -16,6 +16,7 @@ import { EventsListComponent } from './events/events.component';
 import { EventThumbnailComponent } from './events/events-thumbnail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { UpvoteComponent } from "./events/event-details/upvote.component";
 import { appRoutes } from './../routes';
 import { Error404Component } from './errors/404.component';
 import { EventResolver } from './events/events-resolver.service';
@@ -43,7 +44,8 @@ declare let jQuery:any
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModelComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
