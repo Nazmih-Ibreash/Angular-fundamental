@@ -26,6 +26,7 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { DurationPipe } from './events/shared/duration.pipe';
 import * as $ from 'jquery';
+import { VoterService } from './events/event-details/voter.service';
 
 declare let toastr: Toastr;
 declare let jQuery:any
@@ -60,6 +61,7 @@ declare let jQuery:any
     { provide: JQ_TOKEN, useValue: jQuery },
     EventRouteActivetor,
     EventResolver,
+    VoterService,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
   ],
