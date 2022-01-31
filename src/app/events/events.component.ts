@@ -7,6 +7,7 @@ import { Component, OnInit } from "@angular/core";
  
   template: `
         <div>
+            <img src="../../assets/images/angularconnect-shield.png" alt="">
             <h1>Upcoming Angular Events</h1>
             <hr>
             <div class="well hoverwell thumbnail"><h4>Hello world</h4></div>
@@ -25,7 +26,7 @@ export class EventsListComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.events=this.route.snapshot.data['events']
+    this.events = this.route.snapshot.data['events']
   }
  
 }
