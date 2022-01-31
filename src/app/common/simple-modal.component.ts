@@ -5,14 +5,14 @@ import { JQ_TOKEN } from "./jQuery.service";
 @Component({
     selector: 'simple-modal',
     template: `
-    <div id="{{elementId}}" class="modal " tabindex="-1">
+    <div id={{elementId}} class="modal " #modalcontainer tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"> <span>&times;</span></button>
                     <h4 class="modal-title">{{title}}</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" (click)="closeModal()">
                     <ng-content></ng-content>
                 </div>
             </div>
@@ -26,7 +26,15 @@ import { JQ_TOKEN } from "./jQuery.service";
 
 })
 
-export class SimpleModelComponent{
+export class SimpleModelComponent {
     @Input() title!: string
-    @Input() elementId!:string
+    @Input() elementId!: string
+    @ViewChild('modalcontainer')
+    contaiterEl!: ElementRef;
+
+    constructor(@Inject(JQ_TOKEN) private $: any) { }
+
+    closeModal() {
+        this.$(this.contaiterEl.nativeElement).modal('hide')
+    }
 }
