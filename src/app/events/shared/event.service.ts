@@ -1,21 +1,35 @@
 import { IEvent, ISession } from './event.model';
 import { Injectable, EventEmitter } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { catchError, Observable, of } from "rxjs";
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
 export class EventService {
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   getEvents(): Observable<IEvent[]> {
+    return this.http.get<IEvent[]>('/api/events')
+      .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])))
+    /*
     let subject = new Subject<IEvent[]>();
     setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 200)
     return subject;
+    */
   }
 
-  getEvent(id: number): IEvent | any {
-    return EVENTS?.find(event => event.id === id)
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of (result as T )
+      
+    }
+  }
+
+  getEvent(id: number): Observable<IEvent> {
+    return this.http.get<IEvent>('/api/events/' + id)
+      .pipe(catchError(this.handleError<IEvent>('getEvents')))
   }
 
   saveEvent(newEvent: IEvent) {
@@ -59,7 +73,7 @@ const EVENTS: IEvent[] = [
     date: new Date('9/26/2036'),
     time: '10:00 am',
     price: 599.99,
-    imageUrl: '../../assets/angularconnect-shield.png',
+    imageUrl: '../../assets/images/angularconnect-shield.png',
     location: {
       address: '1057 DT',
       city: 'London',

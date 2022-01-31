@@ -21,10 +21,11 @@ export class EventDetailsComponent {
     constructor(private eventService: EventService, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.route.params.forEach((params: Params) => {
-            this.event = this.eventService.getEvent(+params['id'])
+        this.route.data.forEach((data) => {
+            /* this.eventService.getEvent(+params['id']).subscribe((event: IEvent) => {this.event = event})*/
+            this.event = data['event']
             this.addMode = false
-        })
+        })  
     }
     addSession() {
         this.addMode = true

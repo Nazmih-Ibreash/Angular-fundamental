@@ -35,6 +35,6 @@ export class SimpleModelComponent {
     constructor(@Inject(JQ_TOKEN) private $: any) { }
 
     closeModal() {
-        this.$(this.contaiterEl.nativeElement).hide()
+        this.$(this.contaiterEl.nativeElement).modal('hide')
     }
 }
