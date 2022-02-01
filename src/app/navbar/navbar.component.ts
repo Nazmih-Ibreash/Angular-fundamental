@@ -30,9 +30,7 @@ export class NavbarComponent {
 
   searchSessions(searchTerm:any){
       this.eventService.searchSessions(searchTerm).subscribe((sessions: ISession[]) =>{
-        this.foundSession = sessions
-        console.log(this.foundSession);
-        
+        this.foundSession = sessions        
       })
   }
 

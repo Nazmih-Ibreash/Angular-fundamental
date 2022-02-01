@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AuthService } from './events/user/auth.service';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
       <router-outlet></router-outlet>
       `
 })
-export class AppComponent {
-  title = 'ng-funamental';
+export class AppComponent implements OnInit{
+  constructor(private auth: AuthService) { }
+  
+  ngOnInit() {
+    this.auth.checkAuthenticationStatus()
+  }
 }

@@ -32,6 +32,7 @@ import * as $ from 'jquery';
 import { VoterService } from './events/event-details/voter.service';
 import { LocationValidator } from './events/location-validator.directive';
 
+
 declare let toastr: Toastr;
 declare let jQuery:any
 
@@ -69,6 +70,7 @@ declare let jQuery:any
     EventResolver,
     VoterService,
     AuthService,
+  
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
   ],
   bootstrap: [AppComponent]
